@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XStream Arena | Next-Gen Sports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --pink: #ec4899;
+        --purple: #a855f7;
+        --indigo: #6366f1;
+        --dark-bg: #020617;
+      }
+      body {
+        font-family: 'Outfit', 'Space Grotesk', sans-serif;
+        background-color: var(--dark-bg);
+        color: #f8fafc;
+        overflow-x: hidden;
+        margin: 0;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--dark-bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, var(--pink), var(--purple));
+        border-radius: 10px;
+      }
+      .nav-btn {
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(8px);
+      }
+      .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--pink);
+        transform: scale(1.02);
+      }
+      .nav-btn-active {
+        background: linear-gradient(135deg, var(--pink), var(--purple)) !important;
+        border-color: transparent !important;
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+        color: white !important;
+      }
+      .menu-toggle {
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
+      }
+      .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--pink);
+        transform: rotate(90deg);
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.25;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.1",
+        "react/": "https://aistudiocdn.com/react@^19.2.1/",
+        "react-dom": "https://aistudiocdn.com/react-dom@^19.2.1",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+        "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+        "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+        "hls.js": "https://esm.sh/hls.js"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
