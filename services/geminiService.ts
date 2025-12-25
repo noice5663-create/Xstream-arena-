@@ -83,7 +83,12 @@ export const fetchMatchesForDate = async (dateStr: string): Promise<Match[]> => 
     }
 };
 
-export const fetchLeagueStandings = async (tournamentId: string, seasonId?: string): Promise<Standing[]> => {
+export interface GroupStanding {
+  name: string;
+  rows: Standing[];
+}
+
+export const fetchLeagueStandings = async (tournamentId: string, seasonId?: string): Promise<GroupStanding[]> => {
     try {
         let targetSeasonId = seasonId;
         if (!targetSeasonId) {
@@ -96,21 +101,24 @@ export const fetchLeagueStandings = async (tournamentId: string, seasonId?: stri
 
         const standingsRes = await fetch(`https://api.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${targetSeasonId}/standings/total`);
         const standingsData = await standingsRes.json();
-        const rows = standingsData.standings?.[0]?.rows || [];
+        const standingsGroups = standingsData.standings || [];
 
-        return rows.map((row: any) => ({
-            rank: row.position,
-            team: row.team.name,
-            logo: `https://www.sofascore.com/api/v1/team/${row.team.id}/image`,
-            played: row.matches,
-            won: row.wins,
-            drawn: row.draws,
-            lost: row.losses,
-            points: row.points,
-            goalsFor: row.scoresFor,
-            goalsAgainst: row.scoresAgainst,
-            goalDifference: row.scoresFor - row.scoresAgainst,
-            form: []
+        return standingsGroups.map((group: any) => ({
+            name: group.name || "Standings",
+            rows: (group.rows || []).map((row: any) => ({
+                rank: row.position,
+                team: row.team.name,
+                logo: `https://www.sofascore.com/api/v1/team/${row.team.id}/image`,
+                played: row.matches,
+                won: row.wins,
+                drawn: row.draws,
+                lost: row.losses,
+                points: row.points,
+                goalsFor: row.scoresFor,
+                goalsAgainst: row.scoresAgainst,
+                goalDifference: row.scoresFor - row.scoresAgainst,
+                form: []
+            }))
         }));
     } catch (err) {
         return [];

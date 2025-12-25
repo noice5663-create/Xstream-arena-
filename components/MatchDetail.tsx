@@ -27,19 +27,19 @@ const extractVideoId = (url: string) => {
 
 const StatRow: React.FC<{ label: string, home: number, away: number, isPercent?: boolean }> = ({ label, home, away, isPercent = false }) => {
   const total = home + away;
-  const homePercent = total === 0 ? 50 : (home / total) * 100;
+  const awayPercent = total === 0 ? 50 : (away / total) * 100;
   
   return (
     <div className="mb-3 md:mb-4">
       <div className="flex justify-between items-center text-[9px] md:text-[10px] font-bold mb-1.5">
-        <span className="text-white w-10 text-left">{home}{isPercent ? '%' : ''}</span>
+        <span className="text-purple-400 w-10 text-left">{away}{isPercent ? '%' : ''}</span>
         <span className="text-slate-500 uppercase tracking-[0.15em] text-center">{label}</span>
-        <span className="text-white w-10 text-right">{away}{isPercent ? '%' : ''}</span>
+        <span className="text-pink-500 w-10 text-right">{home}{isPercent ? '%' : ''}</span>
       </div>
       <div className="h-1 w-full bg-slate-800/50 rounded-full overflow-hidden flex border border-white/5">
-        <motion.div initial={{ width: 0 }} animate={{ width: `${homePercent}%` }} className="h-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.4)]" />
+        <motion.div initial={{ width: 0 }} animate={{ width: `${awayPercent}%` }} className="h-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
         <div className="w-px h-full bg-[#0b0f1a]" />
-        <motion.div initial={{ width: 0 }} animate={{ width: `${100 - homePercent}%` }} className="h-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
+        <motion.div initial={{ width: 0 }} animate={{ width: `${100 - awayPercent}%` }} className="h-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.4)]" />
       </div>
     </div>
   );
@@ -85,7 +85,11 @@ const PitchView: React.FC<{ homeLineup: Player[], awayLineup: Player[], homeForm
       const y = startY + (stepY * lineIdx);
       for (let i = 0; i < count; i++) {
         if (currentPlayerIdx < fieldPlayers.length) {
-          const x = ((100 / (count + 1)) * (i + 1)) - 3;
+          // Mirroring the X axis: Use (count - i) instead of (i + 1)
+          // This ensures that the first player in the roster (usually Left side) 
+          // appears on the Left of the screen, or swapped based on user preference.
+          // Swapping (i + 1) to (count - i) reverses RB/LB, LWF/RWF
+          const x = ((100 / (count + 1)) * (count - i)) - 3;
           coords.push({ player: fieldPlayers[currentPlayerIdx], x, y });
           currentPlayerIdx++;
         }
@@ -489,20 +493,20 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto w-full">
                       <LineupList 
-                        teamName={details.homeTeam.name} 
-                        startXI={details.homeLineup} 
-                        substitutes={details.homeSubstitutes} 
-                        colorClass="text-pink-500" 
-                        incidents={details.incidents}
-                        isHome={true}
-                      />
-                      <LineupList 
                         teamName={details.awayTeam.name} 
                         startXI={details.awayLineup} 
                         substitutes={details.awaySubstitutes} 
                         colorClass="text-purple-400" 
                         incidents={details.incidents}
                         isHome={false}
+                      />
+                      <LineupList 
+                        teamName={details.homeTeam.name} 
+                        startXI={details.homeLineup} 
+                        substitutes={details.homeSubstitutes} 
+                        colorClass="text-pink-500" 
+                        incidents={details.incidents}
+                        isHome={true}
                       />
                     </div>
                   )}

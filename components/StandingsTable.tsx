@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Trophy, RefreshCw, Globe, Loader2, ChevronRight, Star, ShieldCheck, HelpCircle, Zap, Radio, Activity } from 'lucide-react';
-import { fetchLeagueStandings, fetchMatchesForDate } from '../services/geminiService';
+import { Search, Trophy, RefreshCw, Globe, Loader2, ChevronRight, Star, ShieldCheck, HelpCircle, Zap, Radio, Activity, Layers } from 'lucide-react';
+import { fetchLeagueStandings, fetchMatchesForDate, GroupStanding } from '../services/geminiService';
 import { Standing, Match } from '../types';
 
 interface QuickLink {
@@ -71,7 +71,7 @@ const StandingRow: React.FC<{ standing: Standing; isLast: boolean; leagueId: str
 
 const StandingsTable = () => {
   const [activeLeagueId, setActiveLeagueId] = useState<string>('');
-  const [standings, setStandings] = useState<Standing[]>([]);
+  const [groups, setGroups] = useState<GroupStanding[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [dynamicLeagues, setDynamicLeagues] = useState<QuickLink[]>([]);
@@ -89,7 +89,7 @@ const StandingsTable = () => {
     setLoading(true);
     try {
       const data = await fetchLeagueStandings(id);
-      setStandings(data);
+      setGroups(data);
     } catch (err) {
       console.error("Failed to load standings", err);
     } finally {
@@ -157,10 +157,6 @@ const StandingsTable = () => {
       loadStandings(activeLeagueId);
     }
   }, [activeLeagueId]);
-
-  const filteredStandings = standings.filter(s => 
-    s.team.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const activeLeague = dynamicLeagues.find(l => l.id === activeLeagueId);
 
@@ -242,7 +238,7 @@ const StandingsTable = () => {
           </div>
         </div>
 
-        <div className="flex-1 w-full min-h-[600px]">
+        <div className="flex-1 w-full min-h-[600px] space-y-12">
           <AnimatePresence mode="wait">
             {!activeLeagueId ? (
               <motion.div 
@@ -264,13 +260,13 @@ const StandingsTable = () => {
                 <Loader2 className="w-16 h-16 text-indigo-500 animate-spin" />
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-8">Establishing Data Tunnel</span>
               </motion.div>
-            ) : (
-              <motion.div
-                key="table"
-                initial={{ opacity: 0, scale: 0.99 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.99 }}
-                className="bg-[#0b0f1a] rounded-[3rem] border border-white/5 overflow-hidden shadow-3xl"
-              >
-                <div className="px-8 py-8 md:px-12 bg-gradient-to-br from-indigo-950/40 via-transparent to-transparent border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            ) : groups.length > 0 ? (
+              <div className="space-y-12">
+                {/* Tournament Header */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                  className="px-8 py-8 md:px-12 bg-[#0b0f1a] rounded-[3rem] border border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-3xl"
+                >
                    <div className="flex items-center gap-6">
                       <div className="w-20 h-20 rounded-[2rem] bg-white p-3 shadow-2xl flex items-center justify-center">
                          {activeLeague?.logo ? <img src={activeLeague.logo} alt="" className="w-full h-full object-contain" /> : <Globe size={32} className="text-slate-400" />}
@@ -283,63 +279,87 @@ const StandingsTable = () => {
                          <h3 className="text-2xl font-black text-white uppercase tracking-tighter leading-none">{activeLeague?.name}</h3>
                          <div className="flex items-center gap-4 mt-2">
                             <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                               <Zap size={10} className="text-pink-500" />
-                               Competition Relay Phase
+                               <Layers size={10} className="text-pink-500" />
+                               {groups.length} Active Nodes Detected
                             </span>
                          </div>
                       </div>
                    </div>
-                </div>
+                </motion.div>
 
-                <div className="overflow-x-auto custom-scrollbar">
-                  <table className="w-full text-left border-collapse min-w-[600px]">
-                    <thead className="bg-white/[0.02] border-b border-white/5">
-                      <tr>
-                        <th className="py-6 px-4 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center w-16">#</th>
-                        <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500">Club</th>
-                        <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">P</th>
-                        <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">W</th>
-                        <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">D</th>
-                        <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">L</th>
-                        <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center hidden md:table-cell">GD</th>
-                        <th className="py-6 px-4 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">PTS</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5">
-                      {filteredStandings.length > 0 ? filteredStandings.map((standing, idx) => (
-                        <StandingRow 
-                          key={`${standing.team}-${idx}`} 
-                          standing={standing} 
-                          isLast={idx === filteredStandings.length - 1} 
-                          leagueId={activeLeagueId}
-                        />
-                      )) : (
-                        <tr>
-                          <td colSpan={8} className="py-32 text-center">
-                             <div className="flex flex-col items-center gap-4">
-                               <Radio size={32} className="text-slate-800" />
-                               <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No table data available for this node</span>
-                             </div>
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+                {/* Render Groups */}
+                {groups.map((group, groupIdx) => {
+                  const filteredRows = group.rows.filter(r => 
+                    r.team.toLowerCase().includes(searchQuery.toLowerCase())
+                  );
 
-                <div className="p-10 bg-white/[0.01] flex flex-wrap gap-x-8 gap-y-4 border-t border-white/5">
-                    <div className="flex items-center gap-2.5">
-                        <div className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
-                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Promotion Signal</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                        <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
-                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Regional Qualification</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                        <div className="w-2 h-2 rounded-full bg-pink-600 shadow-[0_0_8px_rgba(219,39,119,0.6)]" />
-                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Relegation Zone</span>
-                    </div>
+                  if (searchQuery && filteredRows.length === 0) return null;
+
+                  return (
+                    <motion.div
+                      key={`${group.name}-${groupIdx}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: groupIdx * 0.1 }}
+                      className="bg-[#0b0f1a] rounded-[3rem] border border-white/5 overflow-hidden shadow-3xl"
+                    >
+                      <div className="px-8 py-6 bg-white/[0.02] border-b border-white/5 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-1.5 h-6 bg-pink-500 rounded-full" />
+                          <h4 className="text-sm font-black text-white uppercase tracking-[0.2em]">{group.name}</h4>
+                        </div>
+                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{filteredRows.length} Teams</span>
+                      </div>
+
+                      <div className="overflow-x-auto custom-scrollbar">
+                        <table className="w-full text-left border-collapse min-w-[600px]">
+                          <thead className="bg-white/[0.01] border-b border-white/5">
+                            <tr>
+                              <th className="py-6 px-4 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center w-16">#</th>
+                              <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500">Club</th>
+                              <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">P</th>
+                              <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">W</th>
+                              <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">D</th>
+                              <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">L</th>
+                              <th className="py-6 px-2 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center hidden md:table-cell">GD</th>
+                              <th className="py-6 px-4 text-[9px] font-black uppercase tracking-widest text-slate-500 text-center">PTS</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-white/5">
+                            {filteredRows.map((standing, idx) => (
+                              <StandingRow 
+                                key={`${standing.team}-${idx}`} 
+                                standing={standing} 
+                                isLast={idx === filteredRows.length - 1} 
+                                leagueId={activeLeagueId}
+                              />
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+                
+                {/* Empty Search State within groups */}
+                {searchQuery && groups.every(g => g.rows.filter(r => r.team.toLowerCase().includes(searchQuery.toLowerCase())).length === 0) && (
+                   <div className="py-32 text-center bg-[#0b0f1a] rounded-[3rem] border border-white/5">
+                      <div className="flex flex-col items-center gap-4">
+                        <Search size={32} className="text-slate-800" />
+                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No matching teams found in any node</span>
+                      </div>
+                   </div>
+                )}
+              </div>
+            ) : (
+              <motion.div 
+                key="empty-data"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                className="flex-1 flex flex-col items-center justify-center py-40 bg-[#0b0f1a] rounded-[3rem] border border-white/5"
+              >
+                <div className="flex flex-col items-center gap-4">
+                  <Radio size={32} className="text-slate-800" />
+                  <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No table data available for this node</span>
                 </div>
               </motion.div>
             )}
