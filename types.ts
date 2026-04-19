@@ -2,8 +2,27 @@
 import React from 'react';
 
 export interface Source {
-  title?: string;
-  uri: string;
+  name: string;
+  url: string;
+  logo?: string;
+  group?: string;
+  type?: 'm3u' | 'xtream' | 'direct';
+  epgId?: string;
+  epgUrl?: string;
+  playlistName?: string;
+  playlistId?: string;
+}
+
+export interface EPGProgram {
+  start: number;
+  stop: number;
+  title: string;
+  description?: string;
+  channelId: string;
+}
+
+export interface EPGData {
+  [channelId: string]: EPGProgram[];
 }
 
 export interface Team {
@@ -21,8 +40,20 @@ export interface Match {
   status: 'LIVE' | 'FINISHED' | 'SCHEDULED';
   time: string; 
   date: string;
-  timestamp: number; // Seconds since epoch
+  timestamp: number;
   sources?: Source[];
+}
+
+export interface IptvConfig {
+  id: string;
+  name: string;
+  type: 'xtream' | 'm3u';
+  host?: string;
+  port?: string;
+  username?: string;
+  password?: string;
+  m3uUrl?: string;
+  epgUrl?: string;
 }
 
 export interface Player {
@@ -48,6 +79,12 @@ export interface Incident {
   isHome: boolean;
 }
 
+export interface OfficialBroadcaster {
+  source: string;
+  channels: string[];
+  competition?: string;
+}
+
 export interface MatchDetail extends Match {
   venue: string;
   referee: string;
@@ -60,6 +97,7 @@ export interface MatchDetail extends Match {
   stats: MatchStats;
   incidents: Incident[];
   summary: string;
+  officialBroadcasters?: OfficialBroadcaster[];
 }
 
 export interface Standing {
@@ -77,10 +115,9 @@ export interface Standing {
   form: string[]; 
 }
 
-export interface LeagueStandings {
-  leagueName: string;
-  standings: Standing[];
-  sources?: Source[];
+export interface GroupStanding {
+  name: string;
+  rows: Standing[];
 }
 
 export interface NewsItem {
@@ -91,6 +128,16 @@ export interface NewsItem {
   imageUrl: string;
   videoUrl?: string;
   sources?: Source[];
+}
+
+export interface Fixture {
+  id?: number;
+  home_team: string;
+  away_team: string;
+  match_time: string;
+  competition: string;
+  source: string;
+  broadcasters?: string[];
 }
 
 export interface ChatMessage {

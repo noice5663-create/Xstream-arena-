@@ -13,10 +13,16 @@ interface QuickLink {
   isDynamic?: boolean;
 }
 
-const StandingRow: React.FC<{ standing: Standing; isLast: boolean; leagueId: string }> = ({ standing, isLast, leagueId }) => {
-  // Common major league IDs for logic-based highlight colors
+const StandingRow: React.FC<{ standing: Standing; isLast: boolean; leagueId: string; leagueName?: string }> = ({ standing, isLast, leagueId, leagueName = '' }) => {
+  // Common major league IDs or names for logic-based highlight colors
   const MAJOR_LEAGUE_IDS = ['17', '8', '23', '35', '34'];
-  const isDomesticTop = MAJOR_LEAGUE_IDS.includes(leagueId);
+  const name = leagueName.toLowerCase();
+  const isDomesticTop = MAJOR_LEAGUE_IDS.includes(leagueId) || 
+                        name.includes('premier league') || 
+                        name.includes('la liga') || 
+                        name.includes('serie a') || 
+                        name.includes('bundesliga') || 
+                        name.includes('ligue 1');
   
   const isUCLQual = isDomesticTop && standing.rank <= 4;
   const isUELQual = isDomesticTop && (standing.rank === 5);
@@ -24,7 +30,7 @@ const StandingRow: React.FC<{ standing: Standing; isLast: boolean; leagueId: str
   const isRelegation = isDomesticTop && standing.rank >= 18;
 
   const getIndicatorColor = () => {
-    if (isUCLQual) return 'bg-indigo-500 shadow-indigo-500/50';
+    if (isUCLQual) return 'bg-pink-500 shadow-pink-500/50';
     if (isUELQual) return 'bg-purple-500 shadow-purple-500/50';
     if (isUECLQual) return 'bg-cyan-500 shadow-cyan-500/50';
     if (isRelegation) return 'bg-pink-600 shadow-pink-600/50';
@@ -40,21 +46,21 @@ const StandingRow: React.FC<{ standing: Standing; isLast: boolean; leagueId: str
       <td className="py-4 px-4 relative">
         <div className="flex items-center gap-3">
           <div className={`absolute left-0 w-1 h-6 rounded-r-full shadow-lg transition-all ${getIndicatorColor()}`} />
-          <span className={`text-[11px] font-black w-5 text-center ${isUCLQual ? 'text-indigo-400' : 'text-slate-500'}`}>
+          <span className={`text-[11px] font-black w-5 text-center ${isUCLQual ? 'text-pink-400' : 'text-slate-500'}`}>
             {standing.rank}
           </span>
         </div>
       </td>
       <td className="py-4 px-2">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-white p-1 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-indigo-500/30 transition-colors shadow-sm">
+          <div className="w-8 h-8 rounded-lg bg-white p-1 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-pink-500/30 transition-colors shadow-sm">
             {standing.logo ? (
-              <img src={standing.logo} alt="" className="w-full h-full object-contain" />
+              <img src={standing.logo} alt="" className="w-full h-full object-contain" loading="lazy" referrerPolicy="no-referrer" />
             ) : (
               <HelpCircle size={14} className="text-slate-700" />
             )}
           </div>
-          <span className="text-[11px] font-black text-white uppercase tracking-tight group-hover:text-indigo-400 transition-colors truncate max-w-[140px] md:max-w-none">
+          <span className="text-[11px] font-black text-white uppercase tracking-tight group-hover:text-pink-400 transition-colors truncate max-w-[140px] md:max-w-none">
             {standing.team}
           </span>
         </div>
@@ -64,13 +70,13 @@ const StandingRow: React.FC<{ standing: Standing; isLast: boolean; leagueId: str
       <td className="py-4 px-2 text-center text-[11px] font-bold text-slate-500">{standing.drawn}</td>
       <td className="py-4 px-2 text-center text-[11px] font-bold text-slate-500">{standing.lost}</td>
       <td className="py-4 px-2 text-center text-[11px] font-bold text-slate-400 hidden md:table-cell">{standing.goalDifference > 0 ? `+${standing.goalDifference}` : standing.goalDifference}</td>
-      <td className="py-4 px-4 text-center text-[11px] font-black text-indigo-400">{standing.points}</td>
+      <td className="py-4 px-4 text-center text-[11px] font-black text-pink-400">{standing.points}</td>
     </motion.tr>
   );
 };
 
-const StandingsTable = () => {
-  const [activeLeagueId, setActiveLeagueId] = useState<string>('');
+const StandingsTable = ({ initialLeagueId }: { initialLeagueId?: string }) => {
+  const [activeLeagueId, setActiveLeagueId] = useState<string>(initialLeagueId || '');
   const [groups, setGroups] = useState<GroupStanding[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -158,6 +164,12 @@ const StandingsTable = () => {
     }
   }, [activeLeagueId]);
 
+  useEffect(() => {
+    if (initialLeagueId) {
+      setActiveLeagueId(initialLeagueId);
+    }
+  }, [initialLeagueId]);
+
   const activeLeague = dynamicLeagues.find(l => l.id === activeLeagueId);
 
   return (
@@ -169,11 +181,11 @@ const StandingsTable = () => {
             </div>
             <div>
                <h2 className="text-2xl md:text-3xl font-black text-white tracking-tighter uppercase leading-none">
-                  Nexus <span className="text-indigo-400">Standings</span>
+                  League <span className="text-indigo-400">Standings</span>
                </h2>
                <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] block mt-1.5 flex items-center gap-2">
                   <RefreshCw size={10} className={loading ? 'animate-spin text-indigo-500' : ''} />
-                  Dynamic Arena Synchronization
+                  Live Table Updates
                </span>
             </div>
         </div>
@@ -196,15 +208,15 @@ const StandingsTable = () => {
         <div className="w-full lg:w-72 shrink-0 space-y-6">
           <div className="p-6 bg-[#0b0f1a] border border-white/5 rounded-[2.5rem] shadow-2xl">
             <div className="flex items-center gap-2 mb-6 px-2">
-                <Activity size={14} className="text-pink-500" />
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Live Arena Hub</span>
+                <Activity size={14} className="text-indigo-500" />
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Active Leagues</span>
             </div>
             
             <div className="flex flex-col gap-2 max-h-[600px] overflow-y-auto custom-scrollbar pr-1">
               {loadingDynamic ? (
                 <div className="flex flex-col items-center py-12 gap-4">
-                   <Loader2 size={24} className="text-pink-500 animate-spin opacity-50" />
-                   <span className="text-[8px] font-black uppercase tracking-[0.3em] text-slate-600">Scanning Signal Nodes</span>
+                   <Loader2 size={24} className="text-indigo-500 animate-spin opacity-50" />
+                   <span className="text-[8px] font-black uppercase tracking-[0.3em] text-slate-600">Scanning Leagues</span>
                 </div>
               ) : dynamicLeagues.length > 0 ? (
                 dynamicLeagues.map((link) => (
@@ -213,24 +225,24 @@ const StandingsTable = () => {
                     onClick={() => setActiveLeagueId(link.id)}
                     className={`group flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl transition-all border ${
                       activeLeagueId === link.id 
-                      ? 'bg-pink-600 border-pink-400/50 shadow-[0_10px_20px_rgba(236,72,153,0.3)]' 
+                      ? 'bg-indigo-600 border-indigo-400/50 shadow-[0_10px_20px_rgba(99,102,241,0.3)]' 
                       : 'bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10'
                     }`}
                   >
                     <div className="w-7 h-7 rounded-lg bg-white p-1 flex items-center justify-center shrink-0 shadow-sm">
-                        {link.logo ? <img src={link.logo} alt="" className="w-full h-full object-contain" /> : <Globe size={14} className="text-slate-400" />}
+                        {link.logo ? <img src={link.logo} alt="" className="w-full h-full object-contain" loading="lazy" referrerPolicy="no-referrer" /> : <Globe size={14} className="text-slate-400" />}
                     </div>
                     <span className={`text-[10px] font-black uppercase tracking-tight truncate flex-1 text-left ${activeLeagueId === link.id ? 'text-white' : 'text-slate-400 group-hover:text-white'}`}>
                       {link.name}
                     </span>
-                    <div className={`w-1.5 h-1.5 rounded-full ${activeLeagueId === link.id ? 'bg-white' : 'bg-pink-500'} animate-pulse shrink-0`} />
+                    <div className={`w-1.5 h-1.5 rounded-full ${activeLeagueId === link.id ? 'bg-white' : 'bg-indigo-500'} animate-pulse shrink-0`} />
                   </button>
                 ))
               ) : (
                 <div className="py-20 text-center px-6 flex flex-col items-center gap-4">
                   <Radio size={24} className="text-slate-800" />
                   <span className="text-[8px] font-black text-slate-700 uppercase tracking-widest leading-relaxed">
-                    No active competition signals detected
+                    No active leagues detected
                   </span>
                 </div>
               )}
@@ -249,7 +261,7 @@ const StandingsTable = () => {
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
                   <Activity size={32} className="text-slate-800" />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600">Awaiting Signal Link</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600">Awaiting League Selection</span>
               </motion.div>
             ) : loading ? (
               <motion.div 
@@ -257,8 +269,8 @@ const StandingsTable = () => {
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 className="flex-1 flex flex-col items-center justify-center py-40 bg-[#0b0f1a] rounded-[3rem] border border-white/5"
               >
-                <Loader2 className="w-16 h-16 text-indigo-500 animate-spin" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-8">Establishing Data Tunnel</span>
+                <Loader2 className="w-16 h-16 text-pink-500 animate-spin" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-8">Loading Table Data</span>
               </motion.div>
             ) : groups.length > 0 ? (
               <div className="space-y-12">
@@ -269,12 +281,12 @@ const StandingsTable = () => {
                 >
                    <div className="flex items-center gap-6">
                       <div className="w-20 h-20 rounded-[2rem] bg-white p-3 shadow-2xl flex items-center justify-center">
-                         {activeLeague?.logo ? <img src={activeLeague.logo} alt="" className="w-full h-full object-contain" /> : <Globe size={32} className="text-slate-400" />}
+                         {activeLeague?.logo ? <img src={activeLeague.logo} alt="" className="w-full h-full object-contain" loading="lazy" referrerPolicy="no-referrer" /> : <Globe size={32} className="text-slate-400" />}
                       </div>
                       <div>
                          <div className="flex items-center gap-2 mb-1">
-                            <ShieldCheck size={12} className="text-indigo-400" />
-                            <span className="text-[8px] font-black text-indigo-400 uppercase tracking-[0.3em]">Verified Arena Signal</span>
+                            <ShieldCheck size={12} className="text-pink-400" />
+                            <span className="text-[8px] font-black text-pink-400 uppercase tracking-[0.3em]">Verified Arena Signal</span>
                          </div>
                          <h3 className="text-2xl font-black text-white uppercase tracking-tighter leading-none">{activeLeague?.name}</h3>
                          <div className="flex items-center gap-4 mt-2">
@@ -332,6 +344,7 @@ const StandingsTable = () => {
                                 standing={standing} 
                                 isLast={idx === filteredRows.length - 1} 
                                 leagueId={activeLeagueId}
+                                leagueName={activeLeague?.name}
                               />
                             ))}
                           </tbody>
@@ -346,7 +359,7 @@ const StandingsTable = () => {
                    <div className="py-32 text-center bg-[#0b0f1a] rounded-[3rem] border border-white/5">
                       <div className="flex flex-col items-center gap-4">
                         <Search size={32} className="text-slate-800" />
-                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No matching teams found in any node</span>
+                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No matching teams found</span>
                       </div>
                    </div>
                 )}
@@ -359,7 +372,7 @@ const StandingsTable = () => {
               >
                 <div className="flex flex-col items-center gap-4">
                   <Radio size={32} className="text-slate-800" />
-                  <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No table data available for this node</span>
+                  <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">No table data available</span>
                 </div>
               </motion.div>
             )}

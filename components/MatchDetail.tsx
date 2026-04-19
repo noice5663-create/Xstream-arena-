@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BarChart2, Users, MonitorPlay, Globe, ArrowDownRight, ArrowUpRight, Zap, History, UserMinus, UserPlus, Play, Clock, Radio, Share2, Check, Youtube } from 'lucide-react';
-import { Match, MatchDetail, Player, Incident } from '../types';
+import { X, BarChart2, Users, MonitorPlay, Globe, Zap, History, UserMinus, UserPlus, Play, Clock, Radio, Share2, Check, Youtube, Shield, List, ArrowDownRight, ArrowUpRight, TrendingUp } from 'lucide-react';
+import { Match, MatchDetail, Player, Incident, NewsItem } from '../types';
 import { fetchMatchDetails, fetchHighlights } from '../services/geminiService';
 import SmartPlayer from './SmartPlayer';
 
@@ -10,7 +10,6 @@ interface MatchDetailViewProps {
   match: Match;
   onClose: () => void;
   onGoToSummary: (match: Match) => void;
-  initialShowHighlights?: boolean;
 }
 
 const tabs = [
@@ -26,20 +25,22 @@ const extractVideoId = (url: string) => {
 };
 
 const StatRow: React.FC<{ label: string, home: number, away: number, isPercent?: boolean }> = ({ label, home, away, isPercent = false }) => {
-  const total = home + away;
-  const awayPercent = total === 0 ? 50 : (away / total) * 100;
+  const h = isNaN(home) ? 0 : home;
+  const a = isNaN(away) ? 0 : away;
+  const total = h + a;
+  const homePercent = total === 0 ? 50 : (h / total) * 100;
   
   return (
     <div className="mb-3 md:mb-4">
-      <div className="flex justify-between items-center text-[9px] md:text-[10px] font-bold mb-1.5">
-        <span className="text-purple-400 w-10 text-left">{away}{isPercent ? '%' : ''}</span>
+      <div className="flex justify-between items-center text-[9px] md:text-[10px] font-black mb-1.5">
+        <span className="text-pink-500 w-10 text-left">{h}{isPercent ? '%' : ''}</span>
         <span className="text-slate-500 uppercase tracking-[0.15em] text-center">{label}</span>
-        <span className="text-pink-500 w-10 text-right">{home}{isPercent ? '%' : ''}</span>
+        <span className="text-purple-400 w-10 text-right">{a}{isPercent ? '%' : ''}</span>
       </div>
       <div className="h-1 w-full bg-slate-800/50 rounded-full overflow-hidden flex border border-white/5">
-        <motion.div initial={{ width: 0 }} animate={{ width: `${awayPercent}%` }} className="h-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
+        <motion.div initial={{ width: 0 }} animate={{ width: `${isNaN(homePercent) ? 50 : homePercent}%` }} className="h-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.4)]" />
         <div className="w-px h-full bg-[#0b0f1a]" />
-        <motion.div initial={{ width: 0 }} animate={{ width: `${100 - awayPercent}%` }} className="h-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.4)]" />
+        <motion.div initial={{ width: 0 }} animate={{ width: `${isNaN(homePercent) ? 50 : 100 - homePercent}%` }} className="h-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
       </div>
     </div>
   );
@@ -73,7 +74,8 @@ const PitchView: React.FC<{ homeLineup: Player[], awayLineup: Player[], homeForm
     const formationParts = (formation && formation.includes('-')) ? parseFormation(formation) : [4, 3, 3];
     const gk = players.find(p => p.position?.toUpperCase().startsWith('G')) || players[0];
     
-    if (gk) coords.push({ player: gk, x: 50 - 3, y: isAway ? 8 : 92 });
+    // Keeper position shifted slightly left (46 instead of 50) as requested
+    if (gk) coords.push({ player: gk, x: 46, y: isAway ? 8 : 92 });
 
     const fieldPlayers = players.filter(p => p !== gk);
     let currentPlayerIdx = 0;
@@ -85,11 +87,14 @@ const PitchView: React.FC<{ homeLineup: Player[], awayLineup: Player[], homeForm
       const y = startY + (stepY * lineIdx);
       for (let i = 0; i < count; i++) {
         if (currentPlayerIdx < fieldPlayers.length) {
-          // Mirroring the X axis: Use (count - i) instead of (i + 1)
-          // This ensures that the first player in the roster (usually Left side) 
-          // appears on the Left of the screen, or swapped based on user preference.
-          // Swapping (i + 1) to (count - i) reverses RB/LB, LWF/RWF
-          const x = ((100 / (count + 1)) * (count - i)) - 3;
+          /**
+           * TACTICAL REALIGNMENT:
+           * Horizontal mapping: (count - i) maps index 0 (Right Back) to visual Right.
+           * Total shift left: -4%.
+           */
+          const xBase = (100 / (count + 1)) * (count - i);
+          const x = xBase - 4; 
+            
           coords.push({ player: fieldPlayers[currentPlayerIdx], x, y });
           currentPlayerIdx++;
         }
@@ -141,54 +146,80 @@ const LineupList: React.FC<{
   };
 
   return (
-    <div className="bg-slate-950/60 rounded-2xl p-4 border border-white/10 backdrop-blur-2xl h-full flex flex-col gap-4 relative z-10">
-        <div className="flex items-center justify-between">
-            <h3 className={`text-[10px] md:text-xs font-black uppercase tracking-[0.15em] ${colorClass}`}>{teamName}</h3>
-            <span className="px-1.5 py-0.5 rounded bg-white/5 text-[7px] font-black text-slate-500 uppercase">Squad</span>
+    <div className="bg-slate-950/60 rounded-3xl p-5 border border-white/10 backdrop-blur-3xl h-full flex flex-col gap-5 relative z-10 shadow-2xl">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+            <h3 className={`text-[11px] md:text-sm font-black uppercase tracking-[0.2em] ${colorClass}`}>{teamName}</h3>
+            <div className="flex items-center gap-2 text-slate-500">
+               <Shield size={14} />
+               <span className="text-[8px] font-black uppercase tracking-widest">Team Squad</span>
+            </div>
         </div>
-        <div className="space-y-4 overflow-y-auto custom-scrollbar pr-1 flex-1 text-[9px] md:text-[11px]">
-            <div>
-              <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                  <div className="w-1 h-1 rounded-full bg-green-500" /> XI
+        
+        <div className="space-y-6 overflow-y-auto custom-scrollbar pr-1 flex-1 text-[10px] md:text-[12px]">
+            {/* STARTING XI SECTION */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 px-3 py-1.5 bg-white/5 rounded-xl border border-white/5">
+                  <Check size={12} className="text-green-500" />
+                  <span className="text-[9px] font-black text-white uppercase tracking-[0.2em]">Starting Eleven</span>
               </div>
-              <div className="space-y-1">
-                  {startXI.map((p, i) => {
+              <div className="grid grid-cols-1 gap-1">
+                  {startXI.slice(0, 11).map((p, i) => {
                       const sub = getSubInfo(p);
                       return (
-                        <div key={i} className="flex items-center gap-3 p-1.5 rounded-lg hover:bg-white/10 transition-all group border border-transparent">
-                            <span className="w-4 text-center font-mono font-black text-slate-500 group-hover:text-white">{p.number}</span>
-                            <div className="flex-1 truncate font-black text-slate-200 group-hover:text-white uppercase flex items-center gap-2">
-                              {p.name}
+                        <motion.div 
+                          key={i} 
+                          initial={{ opacity: 0, x: -5 }} 
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.03 }}
+                          className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/5 transition-all group"
+                        >
+                            <div className={`w-6 h-6 rounded-lg flex items-center justify-center font-black text-[9px] border border-white/10 ${colorClass === 'text-pink-500' ? 'bg-pink-500/10 text-pink-400' : 'bg-purple-500/10 text-purple-400'}`}>
+                              {p.number}
+                            </div>
+                            <div className="flex-1 truncate font-bold text-slate-100 uppercase tracking-tight flex items-center justify-between">
+                              <span className="group-hover:text-white transition-colors">{p.name}</span>
                               {sub && sub.playerOut?.name === p.name && (
-                                <div className="flex items-center gap-1 text-red-500 text-[8px] font-black bg-red-500/10 px-1 rounded">
-                                  <UserMinus size={8} /> {sub.time}'
+                                <div className="flex items-center gap-1 text-red-500 text-[8px] font-black bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                                  <ArrowUpRight size={10} className="rotate-45" /> {sub.time}'
                                 </div>
                               )}
                             </div>
-                        </div>
+                        </motion.div>
                       );
                   })}
               </div>
             </div>
-            <div>
-              <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                  <div className="w-1 h-1 rounded-full bg-slate-700" /> Bench
+
+            {/* SUBSTITUTES (BENCH) SECTION */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 px-3 py-1.5 bg-white/5 rounded-xl border border-white/5">
+                  <List size={12} className="text-slate-400" />
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Substitutes</span>
               </div>
-              <div className="space-y-1">
+              <div className="grid grid-cols-1 gap-1">
                   {substitutes.map((p, i) => {
                       const sub = getSubInfo(p);
+                      const wasIntroduced = sub && sub.playerIn?.name === p.name;
                       return (
-                        <div key={i} className={`flex items-center gap-3 p-1.5 rounded-lg hover:bg-white/10 transition-all group border border-transparent ${sub && sub.playerIn?.name === p.name ? 'opacity-100 bg-white/5' : 'opacity-70'}`}>
-                            <span className="w-4 text-center font-mono font-black text-slate-500">{p.number}</span>
-                            <div className="flex-1 truncate font-black text-slate-400 group-hover:text-white uppercase flex items-center gap-2">
-                              {p.name}
-                              {sub && sub.playerIn?.name === p.name && (
-                                <div className="flex items-center gap-1 text-green-500 text-[8px] font-black bg-green-500/10 px-1 rounded">
-                                  <UserPlus size={8} /> {sub.time}'
+                        <motion.div 
+                          key={i} 
+                          initial={{ opacity: 0, x: -5 }} 
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: (i + 11) * 0.03 }}
+                          className={`flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all group ${wasIntroduced ? 'bg-green-500/10 border-l-2 border-green-500' : 'opacity-60'}`}
+                        >
+                            <div className="w-6 h-6 rounded-lg flex items-center justify-center font-black text-[9px] border border-white/5 bg-slate-900 text-slate-500">
+                              {p.number}
+                            </div>
+                            <div className="flex-1 truncate font-medium text-slate-400 group-hover:text-white uppercase tracking-tight flex items-center justify-between">
+                              <span>{p.name}</span>
+                              {wasIntroduced && (
+                                <div className="flex items-center gap-1 text-green-500 text-[8px] font-black bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20">
+                                  <ArrowDownRight size={10} className="-rotate-45" /> {sub.time}'
                                 </div>
                               )}
                             </div>
-                        </div>
+                        </motion.div>
                       );
                   })}
               </div>
@@ -204,7 +235,7 @@ const MatchEvents: React.FC<{ incidents: Incident[], homeName: string, awayName:
         <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
                 <div className="p-1.5 bg-pink-500/20 rounded-lg"><History size={14} className="text-pink-500" /></div>
-                <h3 className="text-[10px] font-black text-white uppercase tracking-widest">Tactical Logs</h3>
+                <h3 className="text-[10px] font-black text-white uppercase tracking-widest">Match Timeline</h3>
             </div>
             <div className="space-y-2 relative">
                 <div className="absolute left-3 top-0 bottom-0 w-px bg-white/10 z-0" />
@@ -227,30 +258,36 @@ const MatchEvents: React.FC<{ incidents: Incident[], homeName: string, awayName:
     );
 };
 
-const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoToSummary, initialShowHighlights = false }) => {
+const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoToSummary }) => {
   const [activeTab, setActiveTab] = useState('stream');
   const [details, setDetails] = useState<MatchDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [highlightsLoading, setHighlightsLoading] = useState(false);
   const [activeSourceIndex, setActiveSourceIndex] = useState(0);
   const [viewMode, setViewMode] = useState<'pitch' | 'list'>('pitch');
   const [logoError, setLogoError] = useState(false);
   const [currentTime, setCurrentTime] = useState(Date.now() / 1000);
   const [highlightUrl, setHighlightUrl] = useState<string | null>(null);
+  const [highlights, setHighlights] = useState<NewsItem[]>([]);
   const [shareCopied, setShareCopied] = useState(false);
-  const [showResume, setShowResume] = useState(initialShowHighlights);
+  const [showResume, setShowResume] = useState(false);
 
   useEffect(() => {
     const load = async () => {
       setLoading(true);
       const data = await fetchMatchDetails(match);
       setDetails(data);
-      
-      if (match.status === 'FINISHED') {
-        const h = await fetchHighlights(match.homeTeam.name, match.awayTeam.name);
-        if (h.length > 0) setHighlightUrl(h[0].videoUrl || null);
-      }
-      
       setLoading(false);
+      
+      // Load highlights separately to avoid blocking the main UI
+      if (match.status === 'FINISHED') {
+        setHighlightsLoading(true);
+        fetchHighlights(match.homeTeam.name, match.awayTeam.name, match.league, match.date, match.id).then(h => {
+          setHighlights(h);
+          if (h.length > 0) setHighlightUrl(h[0].videoUrl || null);
+          setHighlightsLoading(false);
+        }).catch(() => setHighlightsLoading(false));
+      }
     };
     load();
     
@@ -303,11 +340,11 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                     </div>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div className="text-white font-black text-xl md:text-2xl uppercase tracking-tighter">{isFinished ? 'FT' : match.time}</div>
+                    <div className="text-white font-black text-xl md:text-2xl uppercase tracking-tighter">{isFinished ? 'ENDED' : match.time}</div>
                     <div className="flex items-center gap-1.5 px-2 py-0.5 bg-white/10 rounded-full border border-white/20 mt-1">
                        <Zap size={8} className="text-pink-500 animate-pulse" />
                        <span className="text-[7px] font-black text-slate-300 uppercase tracking-widest">
-                          {isFinished ? 'CONCLUDED' : isScheduled ? 'SCHEDULED' : 'LIVE'}
+                          {isFinished ? 'ENDED' : isScheduled ? 'SCHEDULED' : 'LIVE'}
                        </span>
                     </div>
                 </div>
@@ -344,7 +381,7 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
           {loading ? (
             <div className="flex flex-col items-center justify-center h-full gap-4">
                <div className="w-10 h-10 border-2 border-pink-500/10 border-t-pink-500 rounded-full animate-spin" />
-               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 animate-pulse">Syncing Arena</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 animate-pulse">Syncing Data</span>
             </div>
           ) : details ? (
             <AnimatePresence mode="wait">
@@ -353,12 +390,28 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                   <div className="lg:col-span-2 space-y-4">
                     <div className="aspect-video bg-black rounded-2xl border border-white/10 overflow-hidden shadow-2xl relative flex items-center justify-center">
                       {isFinished ? (
-                        showResume && videoId ? (
+                        highlightsLoading ? (
+                          <div className="flex flex-col items-center text-center p-8">
+                            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10 relative overflow-hidden">
+                              <motion.div 
+                                 animate={{ rotate: 360 }}
+                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                                 className="absolute inset-0 border-2 border-dashed border-pink-500 rounded-full"
+                              />
+                              <Youtube size={40} className="text-pink-500 animate-pulse" />
+                            </div>
+                            <h3 className="text-xl font-black text-white uppercase tracking-tighter mb-2 italic">Scanning Arena...</h3>
+                            <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest mb-4 max-w-[320px]">
+                                Synchronizing official match highlights from global broadcasters.
+                            </p>
+                          </div>
+                        ) : showResume && videoId ? (
                            <iframe
                                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                                 className="w-full h-full"
                                 allow="autoplay; encrypted-media"
                                 allowFullScreen
+                                referrerPolicy="no-referrer"
                             />
                         ) : (
                           <div className="flex flex-col items-center text-center p-8">
@@ -366,7 +419,9 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                                <Youtube size={40} className={`${highlightUrl ? 'text-red-500' : 'text-slate-600'}`} />
                              </div>
                              <h3 className="text-xl font-black text-white uppercase tracking-tighter mb-2">Match Concluded</h3>
-                             <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest mb-8 max-w-[280px]">Official Match Resume and Highlights are synchronized.</p>
+                             <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest mb-8 max-w-[280px]">
+                               {highlightUrl ? 'Official Match Resume and Highlights are synchronized.' : 'Searching for official highlights...'}
+                             </p>
                              <div className="flex flex-wrap justify-center gap-4">
                                 {highlightUrl && (
                                   <button 
@@ -386,6 +441,44 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                                   </button>
                                 )}
                              </div>
+                             
+                             {!highlightUrl && !highlightsLoading && (
+                               <div className="mt-4 p-4 bg-white/5 rounded-2xl border border-white/10 max-w-xs">
+                                 <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wider">
+                                   Official highlights usually activate 30-60 minutes after the final whistle.
+                                 </p>
+                               </div>
+                             )}
+                             
+                             {highlights.length > 1 && (
+                               <div className="mt-8 w-full max-w-md">
+                                 <div className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-4 text-left">Alternative Highlights</div>
+                                 <div className="grid grid-cols-1 gap-2">
+                                   {highlights.map((h, idx) => (
+                                     <button
+                                       key={idx}
+                                       onClick={() => {
+                                         setHighlightUrl(h.videoUrl || null);
+                                         setShowResume(true);
+                                       }}
+                                       className={`flex items-center gap-3 p-3 rounded-xl border transition-all text-left ${
+                                         highlightUrl === h.videoUrl 
+                                         ? 'bg-pink-500/10 border-pink-500/50 text-white' 
+                                         : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'
+                                       }`}
+                                     >
+                                       <div className="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center flex-shrink-0">
+                                         <Youtube size={14} className={highlightUrl === h.videoUrl ? 'text-pink-500' : 'text-slate-600'} />
+                                       </div>
+                                       <div className="flex-1 min-w-0">
+                                         <div className="text-[10px] font-black uppercase truncate">{h.title}</div>
+                                         <div className="text-[8px] font-medium text-slate-500 uppercase tracking-wider">{h.summary}</div>
+                                       </div>
+                                     </button>
+                                   ))}
+                                 </div>
+                               </div>
+                             )}
                           </div>
                         )
                       ) : !isSignalAvailable ? (
@@ -408,25 +501,14 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                            </div>
                         </div>
                       ) : (
-                        <SmartPlayer src={details.sources?.[activeSourceIndex]?.uri || ''} autoPlay />
+                        <SmartPlayer src={details.sources?.[activeSourceIndex]?.url || ''} autoPlay />
                       )}
                     </div>
-                    
-                    {showResume && (
-                       <div className="flex justify-end">
-                          <button 
-                            onClick={() => setShowResume(false)}
-                            className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors"
-                          >
-                             Back to Match Portal
-                          </button>
-                       </div>
-                    )}
                   </div>
                   <div className="flex flex-col gap-4">
                       <div className="bg-black/40 backdrop-blur-3xl rounded-2xl border border-white/10 overflow-hidden flex flex-col h-full p-5">
                           <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 mb-4 flex items-center gap-2">
-                             <div className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_6px_rgba(236,72,153,1)]" /> Transmission
+                             <div className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_6px_rgba(236,72,153,1)]" /> Stream Sources
                           </div>
                           <div className="flex-1 overflow-y-auto space-y-2 custom-scrollbar pr-2">
                             {isFinished ? (
@@ -434,31 +516,55 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                                    <div className="p-3 bg-red-500/10 rounded-full border border-red-500/20">
                                       <Youtube size={24} className="text-red-500" />
                                    </div>
-                                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 max-w-[120px]">Match Resume Available on External Signal</span>
-                                   {highlightUrl && !showResume && (
-                                     <button 
-                                      onClick={() => setShowResume(true)}
-                                      className="px-4 py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl text-[8px] font-black uppercase tracking-widest"
-                                     >
-                                        Watch Match Resume
-                                     </button>
-                                   )}
+                                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 max-w-[120px]">Highlights Available</span>
                                 </div>
                             ) : !isSignalAvailable ? (
                                 <div className="h-full flex flex-col items-center justify-center text-center py-10">
                                    <Radio size={24} className="text-slate-800 mb-2" />
-                                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-700 max-w-[120px]">Awaiting Signal Sync</span>
+                                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-700 max-w-[120px]">Awaiting Stream</span>
                                 </div>
                             ) : (
                                 details.sources?.map((s, i) => (
                                    <button key={i} onClick={() => setActiveSourceIndex(i)} className={`w-full p-3.5 rounded-xl flex items-center gap-3 transition-all border ${activeSourceIndex === i ? 'bg-pink-600 border-pink-400 shadow-lg' : 'bg-white/5 border-transparent hover:bg-white/10'}`}>
                                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-[10px] ${activeSourceIndex === i ? 'bg-white text-black' : 'bg-slate-800 text-slate-500'}`}>{i+1}</div>
-                                      <span className={`text-[10px] font-black uppercase tracking-tight truncate text-left flex-1 ${activeSourceIndex === i ? 'text-white' : 'text-slate-300'}`}>{s.title}</span>
+                                      <div className="flex flex-col items-start flex-1 truncate">
+                                         <span className={`text-[10px] font-black uppercase tracking-tight truncate w-full text-left ${activeSourceIndex === i ? 'text-white' : 'text-slate-300'}`}>{s.name}</span>
+                                         {s.playlistName && (
+                                           <span className={`text-[7px] font-bold uppercase tracking-widest ${activeSourceIndex === i ? 'text-white/60' : 'text-slate-500'}`}>
+                                             {s.playlistName}
+                                           </span>
+                                         )}
+                                      </div>
                                    </button>
                                 ))
                             )}
                           </div>
                       </div>
+
+                      {details.officialBroadcasters && details.officialBroadcasters.length > 0 && (
+                        <div className="bg-black/40 backdrop-blur-3xl rounded-2xl border border-white/10 overflow-hidden flex flex-col p-5">
+                           <div className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 mb-4 flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_6px_rgba(59,130,246,1)]" /> Official Channels
+                           </div>
+                           <div className="space-y-3 max-h-[200px] overflow-y-auto custom-scrollbar pr-2">
+                              {details.officialBroadcasters.map((ob, idx) => (
+                                <div key={idx} className="bg-white/5 rounded-xl p-3 border border-white/5">
+                                   <div className="flex items-center justify-between mb-2">
+                                      <span className="text-[8px] font-black uppercase tracking-widest text-blue-400">{ob.source}</span>
+                                      {ob.competition && <span className="text-[7px] font-bold text-slate-500 truncate max-w-[100px]">{ob.competition}</span>}
+                                   </div>
+                                   <div className="flex flex-wrap gap-1">
+                                      {ob.channels.map((ch, cIdx) => (
+                                        <span key={cIdx} className="px-2 py-0.5 bg-white/5 rounded text-[8px] font-bold text-slate-300 border border-white/5">
+                                           {ch}
+                                        </span>
+                                      ))}
+                                   </div>
+                                </div>
+                              ))}
+                           </div>
+                        </div>
+                      )}
                   </div>
                 </motion.div>
               )}
@@ -467,7 +573,7 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                 <motion.div key="stats" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
                   <div className="bg-black/40 backdrop-blur-3xl p-6 md:p-8 rounded-[1.5rem] border border-white/10 shadow-xl">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="p-1.5 bg-purple-500/20 rounded-lg"><BarChart2 size={16} className="text-purple-400" /></div>
+                        <div className="p-1.5 bg-pink-500/20 rounded-lg"><BarChart2 size={16} className="text-pink-500" /></div>
                         <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Match Metrics</h3>
                     </div>
                     <StatRow label="Possession" home={details.stats.possession[0]} away={details.stats.possession[1]} isPercent />
@@ -493,20 +599,20 @@ const MatchDetailView: React.FC<MatchDetailViewProps> = ({ match, onClose, onGoT
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto w-full">
                       <LineupList 
-                        teamName={details.awayTeam.name} 
-                        startXI={details.awayLineup} 
-                        substitutes={details.awaySubstitutes} 
-                        colorClass="text-purple-400" 
-                        incidents={details.incidents}
-                        isHome={false}
-                      />
-                      <LineupList 
                         teamName={details.homeTeam.name} 
                         startXI={details.homeLineup} 
                         substitutes={details.homeSubstitutes} 
                         colorClass="text-pink-500" 
                         incidents={details.incidents}
                         isHome={true}
+                      />
+                      <LineupList 
+                        teamName={details.awayTeam.name} 
+                        startXI={details.awayLineup} 
+                        substitutes={details.awaySubstitutes} 
+                        colorClass="text-purple-400" 
+                        incidents={details.incidents}
+                        isHome={false}
                       />
                     </div>
                   )}

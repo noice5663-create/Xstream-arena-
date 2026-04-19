@@ -4,20 +4,35 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "tsx server.ts",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "start": "node server.ts"
   },
   "dependencies": {
+    "@google/genai": "^1.31.0",
+    "@types/express": "^4.17.21",
+    "axios": "^1.13.6",
+    "better-sqlite3": "^12.6.2",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "express": "^4.21.2",
+    "fast-xml-parser": "^5.4.1",
+    "framer-motion": "^12.23.25",
+    "hls.js": "latest",
+    "lucide-react": "^0.556.0",
+    "playwright": "^1.58.2",
+    "puppeteer": "^24.40.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "framer-motion": "^12.23.25",
-    "@google/genai": "^1.31.0",
-    "lucide-react": "^0.556.0",
     "recharts": "^3.5.1",
-    "hls.js": "latest"
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",

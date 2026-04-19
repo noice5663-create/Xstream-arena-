@@ -10,7 +10,7 @@ const ChatInterface = () => {
     {
       id: 'welcome',
       role: 'model',
-      text: "👋 Hi! I'm your XStream Arena Assistant. Ask me about live scores, team stats, or player history!",
+      text: "👋 Hi! I'm your Premier League Assistant. Ask me about live scores, team stats, or player history!",
       timestamp: new Date()
     }
   ]);
@@ -67,10 +67,10 @@ const ChatInterface = () => {
             <Sparkles size={14} className="text-white" />
         </div>
         <div className="flex-1">
-            <h3 className="text-white font-bold text-xs">Arena AI</h3>
+            <h3 className="text-white font-bold text-xs">PL Assistant</h3>
             <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-[8px] text-slate-500 uppercase tracking-widest font-black">Sync Active</span>
+                <span className="text-[8px] text-slate-500 uppercase tracking-widest font-black">Online</span>
             </div>
         </div>
         <button 
@@ -110,13 +110,13 @@ const ChatInterface = () => {
                             {msg.sources.slice(0, 1).map((src, i) => (
                                 <a 
                                     key={i} 
-                                    href={src.uri} 
+                                    href={src.url} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-1 px-1.5 py-0.5 bg-white/5 rounded-md text-[8px] text-slate-500 hover:text-white border border-white/5"
                                 >
                                     <ExternalLink size={8} />
-                                    {src.title?.substring(0, 20)}...
+                                    {src.name?.substring(0, 20)}...
                                 </a>
                             ))}
                         </div>
@@ -156,7 +156,7 @@ const ChatInterface = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask Oracle..."
+                placeholder="Ask anything..."
                 className="flex-1 bg-transparent border-none outline-none text-white text-xs px-3 py-1"
                 disabled={isTyping}
             />

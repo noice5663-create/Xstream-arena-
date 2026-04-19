@@ -1,0 +1,1113 @@
+Scraping: https://m.liveonsat.com/
+Scraping: https://m.liveonsat.com/?selDay=1
+Scraping: https://m.liveonsat.com/?selDay=2
+Scraping: https://m.liveonsat.com/?selDay=3
+Scraping: https://m.liveonsat.com/?selDay=4
+Scraping: https://m.liveonsat.com/?selDay=5
+Scraping: https://m.liveonsat.com/?selDay=6
+Match: Sarmiento v Estudiantes Río Cuarto | Football | 22:00
+Channels: Fanatiz EU ($ | geo
+Match: Independiente Petrolero v Guabirá | Football | 22:00
+Channels: beIN Sports MENA English 2 HD                   
+                    
+                             Como TV ($ | geo
+Match: Torque v Defensor Sporting | Football | 22:00
+Channels: Como TV ($ | geo
+Match: Huracán v Belgrano | Football | 22:15
+Channels: Fanatiz EU ($ | geo
+Match: Atlético Tucumán v Racing Club | Football | 00:15
+Channels: Fanatiz EU ($ | geo
+Match: Puerto Cabello v Monagas | Football | 00:30
+Channels: Como TV ($ | geo
+Match: Cobresal v Audax Italiano | Football | 00:30
+Channels: Como TV ($ | geo
+Match: Alianza Atlético v Deportivo Garcilaso | Football | 02:00
+Channels: Como TV ($ | geo
+Match: Macarthur FC v Central Coast Mariners | Football | 08:00
+Channels: Discovery+ UK ($ | geo | R)                   
+                    
+                             Sky Sport 3 NZ HD                    
+                    
+                             TNT Sports 1 HD
+Match: Gamba Osaka v Ratchaburi | Football | 10:00
+Channels: Astro Arena Bola 2 HD                   
+                    
+                             beIN Sports MENA 2 HD                    
+                    
+                             DAZN Japan ($ | geo | R)                    
+                    
+                             Nova Sport Bulgaria HD                    
+                    
+                             Sportdigital FUSSBALL 2                    
+                    
+                             SportKlub 3 Hrvatska                    
+                    
+                             SportKlub 3 Slovenija
+Match: FC Seoul v Vissel Kobe | Football | 10:00
+Channels: Astro Football HD                   
+                    
+                             beIN Sports MENA 1 HD                    
+                    
+                             DAZN Japan ($ | geo | R)                    
+                    
+                             Diema Sport 3 HD                    
+                    
+                             ESPN 1 Nederland HD                    
+                    
+                             OneFootball [app] ($ | geo | R)                    
+                    
+                             Spor Smart Türkiye HD                    
+                    
+                             Sportdigital 1+ Deutsch HD                    
+                    
+                             SportKlub 1 Hrvatska HD                    
+                    
+                             SportKlub 1 Slovenija HD                    
+                    
+                             YouTube: The AFC Hub
+Match: Erzurumspor v Keçiörengücü | Football | 11:30
+Channels: A Spor Türkiye HD
+Match: Jedinstvo Ub v Zemun | Football | 12:00
+Channels: Arena Premium 1 BiH HD                   
+                    
+                             Arena Premium 1 Srbija HD                    
+                    
+                             Arena Sport 10 Srbija HD
+Match: Johor Darul Ta'zim v Sanfrecce Hiroshima | Football | 12:15
+Channels: Astro Arena Bola HD                   
+                    
+                             Astro Grandstand HD                    
+                    
+                             beIN Sports MENA 1 HD                    
+                    
+                             DAZN Japan ($ | geo | R)                    
+                    
+                             Nova Sport Bulgaria HD                    
+                    
+                             OneFootball [app] ($ | geo | R)                    
+                    
+                             Spor Smart Türkiye HD                    
+                    
+                             SportKlub 1 Slovenija HD                    
+                    
+                             SportKlub 2 Hrvatska                    
+                    
+                             YouTube: The AFC Hub
+Match: Cherno More Varna v Arda | Football | 14:00
+Channels: Diema Sport HD                   
+                    
+                             SportKlub 1 Hrvatska HD                    
+                    
+                             SportKlub 2 Slovenija
+Match: Perak v Sabah | Football | 14:00
+Channels: Astro Arena Bola 2 HD
+Match: Vojvodina v Trajal Krusevac | Football | 14:30
+Channels: Arena Premium 1 BiH HD                   
+                    
+                             Arena Premium 1 Srbija HD                    
+                    
+                             Arena Sport 10 Srbija HD
+Match: Hradec Králové v Baník Ostrava | Football | 16:00
+Channels: OnePlay Sport 1 HD                   
+                    
+                             OnePlay Sport 4 HD
+Match: Panathinaikos v OFI Crete | Football | 16:00
+Channels: Cosmote Sport 2 HD
+Match: Zalaegerszeg v Soroksár | Football | 16:15
+Channels: M4 Sport Hungary HD
+Match: CSKA Sofia v Botev Vratsa | Football | 16:30
+Channels: Diema Sport HD                   
+                    
+                             SportKlub 1 Hrvatska HD                    
+                    
+                             SportKlub 1 Slovenija HD
+Match: Zawisza Bydgoszcz v Chojniczanka Chojnice | Football | 16:30
+Channels: TVP Sport Polska HD
+Match: Gubbio v AC Carpi | Football | 17:00
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 252 Italia HD                    
+                    
+                             Sky Sport Max Italia HD
+Match: Pontedera v Juventus II | Football | 17:00
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 251 Italia HD                    
+                    
+                             Sky Sport Uno Italia HD
+Match: Vis Pesaro v AC Bra | Football | 17:00
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 252 Italia HD                    
+                    
+                             Sky Sport Calcio HD
+Match: Graficar v Macva Sabac | Football | 17:00
+Channels: Arena Premium 1 BiH HD                   
+                    
+                             Arena Premium 1 Srbija HD                    
+                    
+                             Arena Sport 10 Srbija HD
+Match: Rimini v Campobasso | Football | 17:30
+Channels: ** C-A-N-C-E-L-L-E-D **                   
+                    
+                             Sky Go Italy [online]
+Match: Polokwane City v Orlando Pirates | Football | 17:30
+Channels: SuperSport PSL HD
+Match: Mamelodi Sundowns v Golden Arrows | Football | 17:30
+Channels: SuperSport Variety 3 HD
+Match: AmaZulu v Magesi | Football | 17:30
+Channels: SuperSport OTT 2
+Match: Chippa United v Marumo Gallants | Football | 17:30
+Channels: SuperSport OTT 3
+Match: Durban City v Sekhukhune United | Football | 17:30
+Channels: SuperSport OTT 6
+Match: Gaziantep v Fenerbahçe | Football | 17:30
+Channels: ATV Türkiye Europe                   
+                    
+                             ATV Türkiye HD                    
+                    
+                             MAX Sport 1 Bulgaria HD                    
+                    
+                             SportKlub 5 Hrvatska                    
+                    
+                             SportKlub 5 Slovenija                    
+                    
+                             VG+ Sport Norge ($ | geo
+Match: Besiktas v Caykur Rizespor | Football | 17:30
+Channels: A Haber HD                   
+                    
+                             MAX Sport 4 Bulgaria HD                    
+                    
+                             SportKlub 6 Slovenija                    
+                    
+                             SportKlub 7 Hrvatska                    
+                    
+                             VG+ Sport Norge ($ | geo
+Match: Beyoglu Yeni Carsi v Kocaelispor | Football | 17:30
+Channels: A Spor Türkiye HD
+Match: Alemannia Aachen v Schweinfurt | Football | 18:00
+Channels: DFB Play TV (geo | R)                   
+                    
+                             Magenta Sport ($ | geo | R)                    
+                    
+                             OneFootball [app] ($ | geo | R)                    
+                    
+                             SportKlub 8 Hrvatska
+Match: Rot-Weiss Essen v Waldhof Mannheim | Football | 18:00
+Channels: Arena Sport 2 Slovakia HD                   
+                    
+                             DFB Play TV (geo | R)                    
+                    
+                             Magenta Sport ($ | geo | R)                    
+                    
+                             OneFootball [app] ($ | geo | R)                    
+                    
+                             SportKlub 3 Slovenija                    
+                    
+                             SportKlub 6 Hrvatska
+Match: Ingolstadt v Duisburg | Football | 18:00
+Channels: Magenta Sport ($ | geo | R)                   
+                    
+                             SportKlub 3 Hrvatska
+Match: Saarbrücken v Wehen Wiesbaden | Football | 18:00
+Channels: Magenta Sport ($ | geo
+Match: TSV Havelse v Hansa Rostock | Football | 18:00
+Channels: Magenta Sport ($ | geo
+Match: Kifisia v PAOK Thessaloniki | Football | 18:00
+Channels: Cosmote Sport 1 HD                   
+                    
+                             SportKlub 11 Hrvatska
+Match: Carrarese v Catanzaro | Football | 18:00
+Channels: DAZN Italia ($ | geo | R)                   
+                    
+                             LaB Channel ($ | geo
+Match: Rayo Vallecano v Real Oviedo | Football | 18:00
+Channels: Arena Premium 3 BiH HD                   
+                    
+                             Arena Sport 1 Hrvatska HD                    
+                    
+                             Arena Sport 3 Slovenija HD                    
+                    
+                             beIN Connect France                    
+                    
+                             beIN Connect MENA                    
+                    
+                             beIN Sports 1 HD (Astro)                    
+                    
+                             beIN Sports Australia 3 HD                    
+                    
+                             beIN Sports France 5 HD max                    
+                    
+                             beIN Sports MENA Xtra 1 HD                    
+                    
+                             DAZN 1 Portugal HD                    
+                    
+                             DAZN 2 Bar Deutsch HD                    
+                    
+                             DAZN Belgium ($ | geo | R)                    
+                    
+                             DAZN Deutsch ($ | geo | R)                    
+                    
+                             DAZN España ($ | geo | R)                    
+                    
+                             DAZN Italia ($ | geo | R)                    
+                    
+                             DAZN LaLiga HD                    
+                    
+                             DAZN USA en Español ($ | geo | R)                    
+                    
+                             ESPN+ USA ($ | geo | R)                    
+                    
+                             Fast Sports [online] ($ | geo | R)                    
+                    
+                             Fubo Sports USA ($ | geo | R)                    
+                    
+                             LaLiga TV Bar 2                    
+                    
+                             LaLiga TV Bar HD                    
+                    
+                             LaLiga TV UK [stream] ($ | geo | R)                    
+                    
+                             Megogo Futbol 1 ($ | geo | R)                    
+                    
+                             MTV Katsomon+ ($ | geo | R)                    
+                    
+                             MTV Urheilu 3 Suomi HD                    
+                    
+                             Nova Sport 4 Czech HD                    
+                    
+                             Nova Sports 2 Hellas HD                    
+                    
+                             Premier Sports 2 Ireland HD                    
+                    
+                             Premier Sports 2 UK HD                    
+                    
+                             Premier Sports GB Player HD                    
+                    
+                             S Sport 1 Türkiye HD                    
+                    
+                             S Sport+ Streaming                    
+                    
+                             Spíler 2 TV Hungary HD                    
+                    
+                             ST Sports Premium HD                    
+                    
+                             SuperSport LaLiga HD                    
+                    
+                             TSN Malta 4 HD                    
+                    
+                             TSN+ Canada ($ | geo | R)                    
+                    
+                             TV2 Play Danmark ($ | geo | R)                    
+                    
+                             TV2 Play Norge ($ | geo | R)                    
+                    
+                             TV2 Sport Premium HD                    
+                    
+                             TV4 Fotboll HD                    
+                    
+                             TV4 Play Sverige [online]                    
+                    
+                             ViaPlay Norge HD
+Match: AZ Alkmaar v Telstar | Football | 19:00
+Channels: Dubai Sports 1 HD                   
+                    
+                             ESPN 1 Nederland HD                    
+                    
+                             ESPN Extra Nederland                    
+                    
+                             Sportdigital FUSSBALL HD                    
+                    
+                             SportKlub 10 Hrvatska
+Match: Kazincbarcika v Ferencváros | Football | 19:00
+Channels: M4 Sport Hungary HD
+Match: Bari v Empoli | Football | 19:00
+Channels: 5 SPORT Israel HD                   
+                    
+                             Blue Sport 2 Live HD                    
+                    
+                             DAZN Italia ($ | geo | R)                    
+                    
+                             LaB Channel ($ | geo
+Match: Juve Stabia v Sampdoria | Football | 19:00
+Channels: DAZN Italia ($ | geo | R)                   
+                    
+                             LaB Channel ($ | geo
+Match: Palermo v Mantova | Football | 19:00
+Channels: 5 SPORT Israel HD                   
+                    
+                             Blue Sport 3 Live HD                    
+                    
+                             DAZN Italia ($ | geo | R)                    
+                    
+                             LaB Channel ($ | geo
+Match: Frosinone v Pescara | Football | 19:00
+Channels: DAZN Italia ($ | geo | R)                   
+                    
+                             LaB Channel ($ | geo
+Match: Brinje Grosuplje v Olimpija | Football | 19:00
+Channels: SportKlub 1 Slovenija HD                   
+                    
+                             SportKlub 9 Hrvatska
+Match: Luton Town v Northampton Town | Football | 19:30
+Channels: Astro Football HD                   
+                    
+                             beIN Sports MENA English 2 HD                    
+                    
+                             Nova Sport 5 Czech HD                    
+                    
+                             Nova Sport 5 Slovakia HD                    
+                    
+                             Paramount+ USA ($ | geo | R)                    
+                    
+                             Sky Sports+ TV HD                    
+                    
+                             ViaPlay Danmark HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             ViaPlay Sverige HD                    
+                    
+                             ViaPlay Ísland HD
+Match: Manchester City v Nottingham Forest | Football | 19:30
+Channels: Arena Premium 4 Srbija HD                   
+                    
+                             Arena Sport 1 BiH HD                    
+                    
+                             Arena Sport 2 Slovenija HD                    
+                    
+                             Arena Sport 6 Hrvatska HD                    
+                    
+                             Astro Premier League 4 HD                    
+                    
+                             beIN Connect MENA                    
+                    
+                             beIN Connect Türkiye                    
+                    
+                             beIN Sports MENA 2 HD                    
+                    
+                             beIN Sports Türkiye 2 HD                    
+                    
+                             Canal+ Extra 2 Polska HD                    
+                    
+                             Canal+ Live 5 France HD                    
+                    
+                             Canal+ Sport 7 Czech HD                    
+                    
+                             DAZN 2 Bar Espana                    
+                    
+                             DAZN 2 Espana HD                    
+                    
+                             DAZN 2 Portugal HD                    
+                    
+                             DAZN España ($ | geo | R)                    
+                    
+                             Discovery+ UK ($ | geo | R)                    
+                    
+                             FuboTV Canada ($ | geo | R)                    
+                    
+                             Go3 Extra Sport Baltics ($ | geo | R)                    
+                    
+                             Hub Premier 4 HD ($ | geo | R)                    
+                    
+                             M+ #Vamos Bar                    
+                    
+                             M+ Liga de Campeones HD                    
+                    
+                             M+ Vamos España HD                    
+                    
+                             Monomax Streaming ($ | geo | R)                    
+                    
+                             Movistar+ Lite ($ | geo | R)                    
+                    
+                             Nova Sport Bulgaria HD                    
+                    
+                             Nova Sports Premier League HD                    
+                    
+                             Peacock Premium USA ($ | geo | R)                    
+                    
+                             Setanta Sports Premium HD                    
+                    
+                             Sky Sport 259 Italia HD                    
+                    
+                             Sky Sport 3 Deutsch HD                    
+                    
+                             Sky Sport 3 NZ HD                    
+                    
+                             Stan Sport Australia ($ | geo | R)                    
+                    
+                             SuperSport 2 Albania HD                    
+                    
+                             SuperSport Variety 3 HD                    
+                    
+                             SÝN Sport 5 Ísland HD                    
+                    
+                             TNT Sports 4 HD                    
+                    
+                             TSN Malta 7 HD                    
+                    
+                             TV3 MAX Dansk HD                    
+                    
+                             V Sport Football HD                    
+                    
+                             V Sport Premier League 1 HD                    
+                    
+                             ViaPlay 3 Urheilu HD                    
+                    
+                             ViaPlay Danmark HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             ViaPlay Sverige HD                    
+                    
+                             VOYO Pro TV Romania [$]
+Match: Aston Villa v Chelsea | Football | 19:30
+Channels: Arena Premium 5 Srbija HD                   
+                    
+                             Arena Sport 4 BiH HD                    
+                    
+                             Arena Sport 5 Hrvatska HD                    
+                    
+                             Astro Premier League 2 HD                    
+                    
+                             beIN Connect MENA                    
+                    
+                             beIN Connect Türkiye                    
+                    
+                             beIN Sports MENA 3 HD                    
+                    
+                             beIN Sports Türkiye 4 HD                    
+                    
+                             Canal+ Extra 5 Polska HD                    
+                    
+                             Canal+ Live 2 France HD                    
+                    
+                             Canal+ Sport 1 Czech HD                    
+                    
+                             Canal+ Sport 360 HD                    
+                    
+                             DAZN 3 Espana HD                    
+                    
+                             DAZN 4 Portugal HD                    
+                    
+                             DAZN España ($ | geo | R)                    
+                    
+                             Diema Sport 3 HD                    
+                    
+                             Discovery+ UK ($ | geo | R)                    
+                    
+                             FuboTV Canada ($ | geo | R)                    
+                    
+                             Futbol TV Tajikistan                    
+                    
+                             Go3 Extra Sport Baltics ($ | geo | R)                    
+                    
+                             Idman TV HD                    
+                    
+                             Monomax Streaming ($ | geo | R)                    
+                    
+                             Nova Sports 4 Hellas HD                    
+                    
+                             Peacock Premium USA ($ | geo | R)                    
+                    
+                             Sky Sport 1 Austria HD                    
+                    
+                             Sky Sport 258 Italia HD                    
+                    
+                             Sky Sport 4 Deutsch HD                    
+                    
+                             Sky Sport 4 NZ HD                    
+                    
+                             Sport 3 Israel HD                    
+                    
+                             Stan Sport Australia ($ | geo | R)                    
+                    
+                             SuperSport 4 Albania HD                    
+                    
+                             SuperSport Action HD                    
+                    
+                             SÝN Sport 4 Ísland HD                    
+                    
+                             TNT Sports 3 HD                    
+                    
+                             TSN Malta 1 HD                    
+                    
+                             TV3+ Dansk HD                    
+                    
+                             USA Network HD                    
+                    
+                             V Sport 1 Sverige HD                    
+                    
+                             V Sport Premier League 3 HD                    
+                    
+                             ViaPlay Danmark HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             ViaPlay Sverige HD                    
+                    
+                             VOYO Pro TV Romania [$]
+Match: Brighton H.A. v Arsenal | Football | 19:30
+Channels: Arena Premium 1 Slovenija                   
+                    
+                             Arena Premium 1 Srbija HD                    
+                    
+                             Arena Sport 3 BiH HD                    
+                    
+                             Arena Sport 7 Hrvatska HD                    
+                    
+                             Astro Premier League 3 HD                    
+                    
+                             beIN Connect MENA                    
+                    
+                             beIN Connect Türkiye                    
+                    
+                             beIN Sports MENA 4 HD                    
+                    
+                             beIN Sports MENA English 1 HD                    
+                    
+                             beIN Sports Türkiye 3 HD                    
+                    
+                             Canal+ Extra 3 Polska HD                    
+                    
+                             Canal+ Live 3 France HD                    
+                    
+                             Canal+ Sport 6 Czech HD                    
+                    
+                             Canal+ Sport France HD                    
+                    
+                             DAZN 1 Bar Espana                    
+                    
+                             DAZN 1 Espana HD                    
+                    
+                             DAZN 3 Portugal HD                    
+                    
+                             DAZN España ($ | geo | R)                    
+                    
+                             Diema Sport 2 HD                    
+                    
+                             Discovery+ UK ($ | geo | R)                    
+                    
+                             FuboTV Canada ($ | geo | R)                    
+                    
+                             Go3 Extra Sport Baltics ($ | geo | R)                    
+                    
+                             Hub Premier 6 HD ($ | geo | R)                    
+                    
+                             Match 4 Hungary HD                    
+                    
+                             Monomax Streaming ($ | geo | R)                    
+                    
+                             Nova Sports 2 Hellas HD                    
+                    
+                             Peacock Premium USA ($ | geo | R)                    
+                    
+                             Prime Video Dansk [$]                    
+                    
+                             Setanta Sports 1 Eurasia HD                    
+                    
+                             Setanta Sports+ Ukraine HD                    
+                    
+                             Sky Sport 2 Deutsch HD                    
+                    
+                             Sky Sport 2 NZ HD                    
+                    
+                             Sky Sport 251 Italia HD                    
+                    
+                             Sky Sport Italia 4K UHD                    
+                    
+                             Stan Sport Australia ($ | geo | R)                    
+                    
+                             SuperSport 1 Albania HD                    
+                    
+                             SuperSport Premier League HD                    
+                    
+                             SÝN Sport 3 Ísland HD                    
+                    
+                             TNT Sports 2 HD                    
+                    
+                             TSN Malta 2 HD                    
+                    
+                             V Sport Premier League 2 HD                    
+                    
+                             V Sport Premium HD                    
+                    
+                             ViaPlay 1 Urheilu HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             ViaPlay Sverige HD                    
+                    
+                             VOYO Pro TV Romania [$]
+Match: Fulham v West Ham United | Football | 19:30
+Channels: Arena Sport 1 Srbija HD                   
+                    
+                             Arena Sport 10 Hrvatska HD                    
+                    
+                             Astro Premier League 5 HD                    
+                    
+                             beIN Connect MENA                    
+                    
+                             beIN Connect Türkiye                    
+                    
+                             beIN Sports MENA 5 HD                    
+                    
+                             beIN Sports Türkiye Max 1 HD                    
+                    
+                             Canal+ Extra 6 Polska HD                    
+                    
+                             Canal+ Live 4 France HD                    
+                    
+                             Canal+ Sport 8 Czech HD                    
+                    
+                             DAZN España ($ | geo | R)                    
+                    
+                             Discovery+ UK ($ | geo | R)                    
+                    
+                             FuboTV Canada ($ | geo | R)                    
+                    
+                             Go3 Extra Sport Baltics ($ | geo | R)                    
+                    
+                             Hub Premier 5 HD ($ | geo | R)                    
+                    
+                             Monomax Streaming ($ | geo | R)                    
+                    
+                             Nova Sports Start Hellas HD                    
+                    
+                             Peacock Premium USA ($ | geo | R)                    
+                    
+                             Sky Sport 5 Deutsch HD                    
+                    
+                             Sky Sport 5 NZ HD                    
+                    
+                             Stan Sport Australia ($ | geo | R)                    
+                    
+                             SuperSport Football HD                    
+                    
+                             SÝN Sport 6 Ísland HD                    
+                    
+                             TNT Sports 5 HD                    
+                    
+                             TSN Malta 8 HD                    
+                    
+                             V Sport Extra Sverige HD                    
+                    
+                             V Sport Premier League 4 HD                    
+                    
+                             ViaPlay Danmark HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             ViaPlay Sverige HD                    
+                    
+                             VOYO Pro TV Romania [$]
+Match: Lorient v Nice | Football | 19:30
+Channels: beIN Connect Türkiye                   
+                    
+                             beIN Sports France 2 HD                    
+                    
+                             beIN Sports MENA 6 HD                    
+                    
+                             beIN Sports MENA French 2 HD                    
+                    
+                             beIN Sports MENA Xtra 1 HD                    
+                    
+                             Como TV ($ | geo | R)                    
+                    
+                             Megogo Sport Ukraine HD                    
+                    
+                             Nova Sport 2 Czech HD                    
+                    
+                             Sport TV3 Slovenija                    
+                    
+                             VG+ Sport Norge ($ | geo
+Match: Hamburg v Bayer Leverkusen | Football | 19:30
+Channels: Arena Sport 6 Srbija HD                   
+                    
+                             BBC iPlayer (geo | R)                    
+                    
+                             BBC iPlayer 4K (geo | R)                    
+                    
+                             BBC Sport Website (geo | R)                    
+                    
+                             beIN Sports 3 HD (Astro)                    
+                    
+                             beIN Sports France 4 HD max                    
+                    
+                             DAZN Japan ($ | geo | R)                    
+                    
+                             Eleven Sports 2 Polska HD                    
+                    
+                             ESPN+ USA ($ | geo | R)                    
+                    
+                             Nova Sport 3 Czech HD                    
+                    
+                             Nova Sports 3 Cyprus HD                    
+                    
+                             Nova Sports 3 Hellas HD                    
+                    
+                             Okko Futbol HD ($ | geo | R)                    
+                    
+                             OneFootball [app] ($ | geo | R)                    
+                    
+                             S Sport+ Streaming                    
+                    
+                             Sky Sport Bundesliga HD                    
+                    
+                             Sky Sport Top Event HD                    
+                    
+                             Sport TV1 Slovenija                    
+                    
+                             SportKlub 1 Hrvatska HD                    
+                    
+                             Tivibu Spor 1 HD                    
+                    
+                             Tring Sport 2 HD                    
+                    
+                             TSN Malta 5 HD                    
+                    
+                             TV2 Play Norge ($ | geo | R)                    
+                    
+                             V Sport 1 Norge HD                    
+                    
+                             ViaPlay Danmark HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             ViaPlay Sverige HD                    
+                    
+                             ViaPlay Ísland HD                    
+                    
+                             YouTube: Bundesliga
+Match: Livorno v Perugia | Football | 19:30
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 254 Italia HD
+Match: Torres v Guidonia Montecelio | Football | 19:30
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 255 Italia HD
+Match: Ravenna v Pianese | Football | 19:30
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 253 Italia HD
+Match: Pineto v Forli | Football | 19:30
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport 256 Italia HD
+Match: Arezzo v Ternana | Football | 19:30
+Channels: Sky Go Italy [online]                   
+                    
+                             Sky Sport Uno Italia HD
+Match: Lech Poznan v Górnik Zabrze | Football | 19:30
+Channels: TVP Sport Polska HD
+Match: Lugano v Sion | Football | 19:30
+Channels: Arena Sport 9 Srbija HD                   
+                    
+                             Blue Sport 4 Live HD                    
+                    
+                             Blue Sport 4 Live HDR
+Match: Luzern v Young Boys | Football | 19:30
+Channels: Blue Sport 1 Live UHD                   
+                    
+                             Blue Sport 2 Live HDR                    
+                    
+                             Blue Sport D 1 HD
+Match: Zürich v Lausanne Sport | Football | 19:30
+Channels: Blue Sport 3 Live HDR                   
+                    
+                             Blue Sport 5 Live HD                    
+                    
+                             Blue Sport D 2 HD
+Match: Gateshead v Braintree Town | Football | 19:45
+Channels: DAZN Great Britain (geo | R)                   
+                    
+                             DAZN Ireland ($ | geo
+Match: Portadown v Cliftonville | Football | 19:45
+Channels: NIFL TV ($ | geo | R)                   
+                    
+                             OneFootball [app] ($ | geo
+Match: Marseille v Toulouse | Football | 20:00
+Channels: beIN Sports France 1 HD                   
+                    
+                             beIN Sports MENA 8 HD                    
+                    
+                             beIN Sports MENA French 1 HD                    
+                    
+                             beIN Sports Türkiye Max 2 HD                    
+                    
+                             Como TV ($ | geo | R)                    
+                    
+                             ERT 2 Sport Hellas HD                    
+                    
+                             MAX Sport 2 Bulgaria HD                    
+                    
+                             Megogo Futbol 2 ($ | geo | R)                    
+                    
+                             New World Sport 1 Mauritius                    
+                    
+                             Nova Sport 1 Czech HD                    
+                    
+                             Sport 1 Lithuania HD [$]                    
+                    
+                             Sport TV2 Slovenija                    
+                    
+                             SuperSport 6 Albania HD                    
+                    
+                             VG+ Sport Norge ($ | geo
+Match: Lazio v Atalanta | Football | 20:00
+Channels: Arena Premium 2 BiH HD                   
+                    
+                             Arena Sport 3 Slovenija HD                    
+                    
+                             Arena Sport 3 Srbija HD                    
+                    
+                             Arena Sport 4 Hrvatska HD                    
+                    
+                             Canale 5 Italia HD                    
+                    
+                             DAZN 1 Bar Deutsch HD                    
+                    
+                             DAZN Deutsch ($ | geo | R)                    
+                    
+                             MAX Sport 3 Bulgaria HD                    
+                    
+                             Megogo Futbol 1 ($ | geo | R)                    
+                    
+                             Nova Sports 1 Hellas HD                    
+                    
+                             Polsat Sport 2 HD                    
+                    
+                             Premier Sports 1 Ireland HD                    
+                    
+                             Premier Sports 1 UK HD                    
+                    
+                             Premier Sports GB Player HD                    
+                    
+                             Sport+ Qazaqstan                    
+                    
+                             Tring Sport 1 HD                    
+                    
+                             TRT Spor Türkiye HD                    
+                    
+                             TSN Malta 3 HD                    
+                    
+                             VG+ Sport Norge ($ | geo | R)                    
+                    
+                             Ziggo Sport 2
+Match: Sambenedettese v Ascoli | Football | 20:00
+Channels: RAI Sport                   
+                    
+                             RAI Sport+ HD                    
+                    
+                             Sky Go Italy [online]                    
+                    
+                             Sky Sport 252 Italia HD
+Match: Aberdeen v Celtic | Football | 20:00
+Channels: Arena Sport 5 BiH HD                   
+                    
+                             Arena Sport 8 Srbija HD                    
+                    
+                             Como TV ($ | geo | R)                    
+                    
+                             Cosmote Sport 3 HD                    
+                    
+                             Polsat Sport Extra 1 HD                    
+                    
+                             Red TV ($ | geo | R)                    
+                    
+                             S Sport+ Streaming                    
+                    
+                             Sky Go UK [online]                    
+                    
+                             Sky Sports Football HD                    
+                    
+                             Sky Sports Main Event HD                    
+                    
+                             Sky Sports Main Event UHD                    
+                    
+                             Sportdigital FUSSBALL 2                    
+                    
+                             SuperSport 7 Albania HD
+Match: Real Sociedad v Athletic Bilbao | Football | 20:00
+Channels: Arena Premium 2 Srbija HD                   
+                    
+                             Arena Premium 3 BiH HD                    
+                    
+                             Arena Sport 4 Slovenija HD                    
+                    
+                             Arena Sport 8 Hrvatska HD                    
+                    
+                             DAZN 2 Bar Deutsch HD                    
+                    
+                             DAZN Deutsch ($ | geo | R)                    
+                    
+                             DAZN Italia ($ | geo | R)                    
+                    
+                             Disney+ Danmark ($ | geo | R)                    
+                    
+                             Disney+ Norge ($ | geo | R)                    
+                    
+                             Disney+ Sverige ($ | geo | R)                    
+                    
+                             Eleven Sports 1 Polska HD                    
+                    
+                             ESPN 3 Brazil HD                    
+                    
+                             ETB 1 Basque Country                    
+                    
+                             ITV 4 HD                    
+                    
+                             ITV X (geo | R)                    
+                    
+                             LaLiga TV Bar HD                    
+                    
+                             M+ LaLiga HD                    
+                    
+                             MAX Sport 4 Bulgaria HD                    
+                    
+                             Movistar Plus+ HD                    
+                    
+                             Orange Fútbol 1 HD                    
+                    
+                             RTVE Play ($ | geoR)                    
+                    
+                             S Sport+ Streaming                    
+                    
+                             SuperSport 5 Albania HD                    
+                    
+                             TVE La 1 HD España                    
+                    
+                             TVE La 1 UHD 4K                    
+                    
+                             Ziggo Sport HD
+Match: Newcastle United v Manchester United | Football | 20:15
+Channels: Arena Premium 1 BiH HD                   
+                    
+                             Arena Premium 3 Srbija HD                    
+                    
+                             Arena Sport 1 Hrvatska HD                    
+                    
+                             Arena Sport 1 Slovenija HD                    
+                    
+                             Astro Grandstand HD                    
+                    
+                             Astro Premier League HD                    
+                    
+                             Astro Sports UHD                    
+                    
+                             beIN Connect MENA                    
+                    
+                             beIN Connect Türkiye                    
+                    
+                             beIN Sports MENA 1 HD                    
+                    
+                             beIN Sports MENA 4K UHD                    
+                    
+                             beIN Sports Türkiye 5 HD                    
+                    
+                             Canal+ Extra 1 Polska HD                    
+                    
+                             Canal+ Foot HD                    
+                    
+                             Canal+ Live 1 France HD                    
+                    
+                             Canal+ Sport 5 Czech HD                    
+                    
+                             DAZN 1 Portugal HD                    
+                    
+                             DAZN 4 Espana HD                    
+                    
+                             DAZN España ($ | geo | R)                    
+                    
+                             Diema Sport HD                    
+                    
+                             Discovery+ UK ($ | geo | R)                    
+                    
+                             ESPN 4 Brazil HD                    
+                    
+                             FuboTV Canada ($ | geo | R)                    
+                    
+                             Go3 Extra Sport Baltics ($ | geo | R)                    
+                    
+                             Hub Premier 1 HD ($ | geo | R)                    
+                    
+                             Hub Premier 2 HD ($ | geo | R)                    
+                    
+                             Hub Premier 2 UHD ($ | geo | R)                    
+                    
+                             Hub Premier 8 HD ($ | geo | R)                    
+                    
+                             Monomax Streaming ($ | geo | R)                    
+                    
+                             Nova Sports Prime Hellas HD                    
+                    
+                             Prime Video Sverige [$]                    
+                    
+                             See Dansk HD                    
+                    
+                             Setanta Sports Ukraine HD                    
+                    
+                             Sky Sport 1 NZ HD                    
+                    
+                             Sky Sport 257 Italia HD                    
+                    
+                             Sky Sport MIX Deutsch HD                    
+                    
+                             Spíler 1 TV Hungary HD                    
+                    
+                             Stan Sport Australia ($ | geo | R)                    
+                    
+                             SuperSport 3 Albania HD                    
+                    
+                             SuperSport MáXimo 1 HD                    
+                    
+                             SuperSport PSL HD                    
+                    
+                             SÝN Sport 2 Ísland HD                    
+                    
+                             TNT Sports 1 HD                    
+                    
+                             TNT Sports Digital Exclusive                    
+                    
+                             TNT Sports Ultimate UHD                    
+                    
+                             TSN Malta 4 HD                    
+                    
+                             V Sport Premier League HD                    
+                    
+                             ViaPlay 2 Urheilu HD                    
+                    
+                             ViaPlay Danmark HD                    
+                    
+                             ViaPlay Nederland HD                    
+                    
+                             ViaPlay Norge HD                    
+                    
+                             ViaPlay Suomi HD                    
+                    
+                             VOYO Pro TV Romania [$]

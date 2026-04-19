@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import { Play, Pause, Volume2, VolumeX, Maximize, RefreshCw, AlertTriangle, Settings, Radio } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { iptvService } from '../services/iptvService';
 
 interface SmartPlayerProps {
   src: string;
@@ -19,10 +20,21 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
   const [loading, setLoading] = useState(true);
   const [showControls, setShowControls] = useState(false);
 
+  const [retryCount, setRetryCount] = useState(0);
+
+  const getEmbedUrl = (url: string) => {
+    if (url.includes('embed/')) return url;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    const videoId = (match && match[2].length === 11) ? match[2] : null;
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : url;
+  };
+
   const isYoutube = src.includes('youtube.com') || src.includes('youtu.be');
+  const finalSrc = isYoutube ? getEmbedUrl(src) : iptvService.wrapWithProxy(src);
 
   useEffect(() => {
-    // Reset state on source change
+    // Reset state on source change or retry
     setError(null);
     setLoading(true);
     setIsPlaying(false);
@@ -56,14 +68,18 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
         }
     };
 
-    if (Hls.isSupported() && (src.includes('.m3u8') || src.includes('.ts') || src.includes(':8080'))) {
+    if (Hls.isSupported() && (finalSrc.includes('.m3u8') || finalSrc.includes('.ts') || finalSrc.includes(':8080') || finalSrc.includes('iptv-proxy'))) {
       hls = new Hls({
           enableWorker: true,
           lowLatencyMode: true,
           backBufferLength: 90,
+          xhrSetup: (xhr, url) => {
+            // If we are using proxy, we might need to pass credentials or specific headers
+            // but for now default is fine
+          }
       });
       
-      hls.loadSource(src);
+      hls.loadSource(finalSrc);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, handleSuccess);
       hls.on(Hls.Events.ERROR, (event, data) => {
@@ -82,12 +98,8 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
             }
         }
       });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = src;
-      video.addEventListener('loadedmetadata', handleSuccess);
-      video.addEventListener('error', handleError);
     } else {
-      video.src = src;
+      video.src = finalSrc;
       video.addEventListener('loadedmetadata', handleSuccess);
       video.addEventListener('error', handleError);
     }
@@ -101,7 +113,7 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
           video.src = "";
       }
     };
-  }, [src, isYoutube, autoPlay]);
+  }, [finalSrc, isYoutube, autoPlay, retryCount]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -141,7 +153,7 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
     return (
         <div className="w-full h-full relative bg-black rounded-xl overflow-hidden shadow-2xl">
             <iframe
-                src={src}
+                src={finalSrc}
                 className="w-full h-full border-0"
                 title="YouTube Live Stream"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -175,7 +187,7 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
                     exit={{ opacity: 0 }}
                     className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm z-20"
                 >
-                    <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mb-4" />
+                    <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4" />
                     <span className="text-white font-bold tracking-widest text-sm">CONNECTING</span>
                 </motion.div>
             )}
@@ -194,7 +206,7 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
                     <h3 className="text-white font-bold text-lg mb-2">Stream Error</h3>
                     <p className="text-gray-400 text-sm mb-4 max-w-md">{error}</p>
                     <button 
-                        onClick={() => window.location.reload()} 
+                        onClick={() => setRetryCount(prev => prev + 1)} 
                         className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-white text-sm transition-colors border border-white/5"
                     >
                         <RefreshCw size={14} /> Retry Connection
@@ -232,7 +244,7 @@ const SmartPlayer: React.FC<SmartPlayerProps> = ({ src, poster, autoPlay = false
             {/* Main Controls */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <button onClick={togglePlay} className="text-white hover:text-pink-400 transition-colors">
+                    <button onClick={togglePlay} className="text-white hover:text-indigo-400 transition-colors">
                         {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" />}
                     </button>
                     
